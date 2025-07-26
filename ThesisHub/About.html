@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThesisHub - Home</title>
+    <style>
+        /* Reset some default styles for consistency */
+        body,
+        h1,
+        h2,
+        p,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Navigation menu styles */
+        nav {
+            background-color: black;
+            text-align: white;
+            padding: 20px 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+            order: -1;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+            order: 1;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s, background-color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: black;
+            background-color: white;
+        }
+
+        .logo-container {
+            order: -2;
+        }
+
+        .logo-container a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            max-height: 30px; /* Adjust the max height as needed */
+            margin-right: 10px;
+        }
+
+        /* Header styles */
+        .header {
+            text-align: center;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Search bar styles */
+        .search-bar-container {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        #search-input {
+            padding: 10px;
+            width: 30%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .search-button {
+            background-color: black;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .search-button:hover {
+            background-color: gray;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .featured-thesis {
+            text-align: center;
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .thesis {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            color: #000;
+        }
+
+        .thesis img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .discover {
+            background-color: black;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .discover:hover {
+            background-color: gray;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Padding for Recent section */
+        .h2-container {
+            text-align: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* Popup styles */
+        #login-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 70px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            position: relative;
+        }
+
+        #popup-username,
+        #popup-password {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .popup-buttons {
+            margin-top: 20px;
+        }
+
+        .popup-buttons button {
+            background-color: red;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-right: 10px;
+            display: inline-block; /* Ensure buttons appear in a line */
+        }
+
+        .popup-buttons button:hover {
+            background-color: gray;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .close-button {
+            color: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .sort-buttons {
+            text-align: center;
+            margin: 20px auto; /* Center the buttons */
+        }
+
+        .sort-buttons button {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block; /* Ensure buttons appear in a line */
+        }
+
+        .sort-buttons button:hover {
+            background-color: gray;
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li class="logo-container">
+                <a href="ThesisHub.html">
+                    <img src="logo.jpg" alt="ThesisHub Logo">
+                </a>
+            </li>
+            <li><a href="Home.html">HOME</a></li>
+            <li><a href="Thesis.html">THESIS</a></li>
+            <li><a href="About.html">ABOUT</a></li>
+            <li><button onclick="showLoginPopup()">Sign In</button></li>
+        </ul>
+    </nav>
+
+    <div class="header">
+        <h1>ThesisHub</h1>
+        <p>Adamson Computer Engineering Department’s Thesis Database Management Hub</p>
+    </div>
+
+    <div class="search-bar-container">
+        <input type="text" id="search-input" placeholder="">
+        <button class="search-button" onclick="performSearch()">Search</button>
+    </div>
+
+    <div class="sort-buttons">
+        <button onclick="sortTable('title')">Sort A-Z</button>
+        <button onclick="sortTable('title', true)">Sort Z-A</button>
+        <button onclick="sortTable('author')">Sort by Author</button>
+        <button onclick="sortTable('year')">Sort by Year</button>
+    </div>
+
+  
+    <br><br>
+
+    <footer>
+        &copy; Adamson Computer Engineering Department
+    </footer>
+
+    <div id="login-popup">
+        <div class="popup-content">
+            <span class="close-button" onclick="hideLoginPopup()">&times;</span>
+            <h2>Log in to ThesisHub </h2>
+            <br>
+            <form>
+                <label for="popup-username" style="display: block;">Username:</label>
+                <input type="text" id="popup-username" name="popup-username" required><br>
+
+                <label for="popup-password" style="display: block;">Password:</label>
+                <input type="password" id="popup-password" name="popup-password" required><br>
+
+                <input type="submit" value="Login">
+
+                <div class="popup-buttons">
+                    <button type="button" onclick="login('guest')">Guest Login</button>
+                    <button type="button" onclick="login('institutional')">Institutional Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        // Search function
+        function performSearch() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+
+            // Filter the initial data based on the search term
+            const filteredData = initialData.filter(book => {
+                return book.title.toLowerCase().includes(searchTerm) ||
+                    book.author.toLowerCase().includes(searchTerm) ||
+                    book.year.toString().includes(searchTerm);
+            });
+
+            // Display the filtered data
+            displayData(filteredData);
+        }
+
+        async function displayData(data) {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+
+            data.forEach(book => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.year}</td>`;
+                tableBody.appendChild(row);
+            });
+        }
+
+    </script>
+</body>
+
+</html>
